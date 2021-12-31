@@ -5,6 +5,7 @@ subtitle: "Have you ever run a script and then waited and waited?"
 date:   2021-12-28 13:37:06 -0500
 categories: MATLAB
 tags: featured-function waitbar
+comments: false
 use_math: true
 ---
 ![waitingbar](/test-blog/assets/waitbar.jpg)
