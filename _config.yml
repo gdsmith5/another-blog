@@ -14,7 +14,7 @@ title: mmm
 description: Musings on MATLAB and Machine Learning
 
 # GitHub Actions
-repository: "VincentTam/beautiful-jekyll"
+repository: "gdsmith5/mmm"
 
 # --- Local development options ---
 # If your website is hosted locally rather than on GitHub, then you need to uncomment the next two parameters to set the url and baseurl
