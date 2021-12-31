@@ -17,9 +17,9 @@ Well, fortunately MATLAB has a convenient function for creating a progress bar: 
 
 See the code snippet below for an example of how to use the  `waitbar()` function to display progress with a lengthy calculation (the Taylor series expansion of the exponential function):
 
-$$
+$
 \sum
-$$
+$
 
 ``` matlab
 %% MATLAB snippet to calculate Taylor expansion of the exponential
