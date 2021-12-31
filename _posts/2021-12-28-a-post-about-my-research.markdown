@@ -5,7 +5,7 @@ subtitle: "Have you ever run a script and then waited and waited?"
 date:   2021-12-28 13:37:06 -0500
 categories: MATLAB
 tags: featured-function waitbar
-use_math: false
+use_math: true
 ---
 ![waitingbar](/test-blog/assets/waitbar.jpg)
 
@@ -17,9 +17,9 @@ Well, fortunately MATLAB has a convenient function for creating a progress bar: 
 
 See the code snippet below for an example of how to use the  `waitbar()` function to display progress with a lengthy calculation (the Taylor series expansion of the exponential function):
 
-$
+\begin{equation}
 e^x \simeq f\left( x \right) = \sum_{i=0}^{lim} \frac{x^i}{i!}
-$
+\end{equation}
 
 ``` matlab
 %% MATLAB snippet to calculate Taylor expansion of the exponential
