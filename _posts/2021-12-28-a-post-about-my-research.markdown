@@ -1,11 +1,12 @@
 ---
 layout: post
 title:  "MATLAB Featured Function: waitbar()"
-description: "Have you ever run a script and then waited and waited?"
+subtitle: "Have you ever run a script and then waited and waited?"
 date:   2021-12-28 13:37:06 -0500
 categories: MATLAB
 tags: featured-function waitbar
 math: true
+comments: false
 ---
 ![waitingbar](/test-blog/assets/waitbar.jpg)
 
