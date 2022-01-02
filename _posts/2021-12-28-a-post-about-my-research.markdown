@@ -8,7 +8,7 @@ tags: featured-function waitbar
 comments: false
 use_math: true
 ---
-![waitingbar]({{ site.url }}/assets/img/waitbar.jpg)
+![waitingbar]({{ site.baseurl }}/assets/img/waitbar.jpg)
 
 ## **Have you ever run a script and then waited and waited wondering if it was actually running?**
 
