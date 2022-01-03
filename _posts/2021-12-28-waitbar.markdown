@@ -16,12 +16,11 @@ Wouldn't it be great to have some sort of indication of the progress being made?
 
 Well, fortunately MATLAB has a convenient function for creating a progress bar: `waitbar()`!
 
-See the code snippet below for an example of how to use the  `waitbar()` function to display progress with a lengthy calculation (the Taylor series expansion of the exponential function):
+See the code snippet below (which you can get [here]("{{ site.url }}/_scripts/ff_waitbar.m"){:target="_blank"}) for an example of how to use the  `waitbar()` function to display progress with a lengthy calculation (the Taylor series expansion of the exponential function):
 
 $$
 e^x \simeq f\left( x \right) = \sum_{i=0}^{lim} \frac{x^i}{i!}
 $$
-
 
 ``` matlab
 %% MATLAB snippet to calculate Taylor expansion of the exponential
