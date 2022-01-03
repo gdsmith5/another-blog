@@ -66,6 +66,4 @@ close(f)   % close progress bar
 
 ---
 
-Read more at the official MathWorks documentation for the [waitbar() function](https://www.mathworks.com/help/matlab/ref/waitbar.html).
-
-[waitbar-doc]: https://www.mathworks.com/help/matlab/ref/waitbar.html
+Read more at the official MathWorks documentation for the [waitbar() function](https://www.mathworks.com/help/matlab/ref/waitbar.html){:target="_blank"}.
