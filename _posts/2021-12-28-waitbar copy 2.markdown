@@ -1,17 +1,16 @@
 ---
 layout: post
 title:  "MATLAB Featured Function: waitbar()"
-subtitle: "Have you ever run a script and then waited and waited?"
-# cover-img: "/assets/img/waitbar.jpg"
+subtitle: "Have you ever run a script and then waited and waited wondering if it was actually running?"
+cover-img: "/assets/img/binary_dark.jpeg"
 thumbnail-img: "/assets/img/waitbar.jpg"
 date:   2021-12-28 13:37:06 -0500
 categories: MATLAB
-tags: featured-function waitbar
+tags: [MATLAB, featured function]
 comments: false
+readtime: true
 ---
-![waitingbar]({{ site.baseurl }}/assets/img/waitbar.jpg)
-
-## **Have you ever run a script and then waited and waited wondering if it was actually running?**
+MATLAB is super efficient and fast at many things, but sometimes a computationally-intensive script or function can take a while to run.  And, sometimes you wonder if it's taking so long because of a bug.
 
 Wouldn't it be great to have some sort of indication of the progress being made?
 
@@ -42,6 +41,11 @@ close(f)   % close progress bar
 ```
 ---
 
+When the code is run, a window pops up showing the progress of the for loop:
+
+![waitbar]({{ site.baseurl }}/assets/img/waitbar.jpg)
+
+---
 
 To use `waitbar()`, we must first initialize it and assign it a handle so that we can refer to it later. In the example, we assign the handle to the variable `f`. The text string, `'Progress'`, is what is to be displayed in the progress bar window:
 
