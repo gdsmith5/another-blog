@@ -15,7 +15,7 @@ Been wanting to dip your toe into Machine Learning but not sure where to start?
 
 Principal Components Analysis (PCA) is a great place to begin!
 
-* PCA is a method for representing a dataset with an alternative coordinate system
+* PCA is a method for representing a dataset with an alternative coordinate system.
 
 * The cool part is that this coordinate system is tailored to the specific dataset with which it is to be used!
 

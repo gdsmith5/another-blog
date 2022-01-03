@@ -10,7 +10,7 @@ tags: [MATLAB, featured function]
 comments: false
 readtime: true
 ---
-MATLAB is super efficient and fast at many things, but sometimes a computationally-intensive script or function can take a while to run.  And, sometimes you wonder if it's taking so long because of a bug.
+MATLAB is super efficient and fast at many things, but sometimes a computationally-intensive script or function can take a while to run.  And, sometimes you wonder if it's taking so long because of a bug and not because it's just working hard.
 
 Wouldn't it be great to have some sort of indication of the progress being made?
 
@@ -21,6 +21,7 @@ See the code snippet below for an example of how to use the  `waitbar()` functio
 $$
 e^x \simeq f\left( x \right) = \sum_{i=0}^{lim} \frac{x^i}{i!}
 $$
+
 
 ``` matlab
 %% MATLAB snippet to calculate Taylor expansion of the exponential
@@ -63,6 +64,11 @@ Finally, when we are done with the calculation we close the progress bar window:
 close(f)   % close progress bar
 ```
 
+---
+
+Note that using 5,000 terms in this expansion is overkill. It approximates the true value of $e^{0.2}$ (= 1.2214) with an error of less than $10^{-17}$! But using this many terms takes long enough (2.9 seconds on my computer - wonder how I timed that in MATLAB? check out this blog post) that we can visualize the progress bar changing.
+
+How many terms would be required to get an answer that is _only_ within $10^{-7}$?
 
 ---
 
