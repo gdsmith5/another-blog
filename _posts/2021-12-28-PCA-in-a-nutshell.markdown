@@ -6,7 +6,7 @@ cover-img: "/assets/img/ML_dark.jpeg"
 thumbnail-img: "/assets/img/ML.jpeg"
 date:   2021-12-28 13:37:06 -0500
 categories: MATLAB
-tags: [ML, PCA, unsupervised]
+tags: [Machine Learning, PCA, unsupervised]
 comments: false
 readtime: true
 ---
