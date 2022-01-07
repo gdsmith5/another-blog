@@ -31,7 +31,7 @@ layout: page
         <figure>
           <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
           {% if post.thumbnail-img-link %}
-            <a href="{{ post.thumbnail-img-link }}">
+            <a target=_blank" href="{{ post.thumbnail-img-link }}">
               <figcaption>Image by  {{ post.thumbnail-img-source }}</figcaption>
             </a>
           {% else %}
