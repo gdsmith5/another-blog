@@ -33,14 +33,14 @@ Here, I explain in a more graphical way what PCA is without getting into the mat
 
 The idea behind PCA is that it constructs new variables that are linear combinations of the original variables. These new variables are called the principal components (PCs), and any sample from the dataset can be expressed in terms of these PCs. Think of them as new directions in space (see, for example, the gray arrows in the plot below), and any data point is represented not by how far along the original axes (e.g. x, y) the point is but how far along the new axes (PCs) it is.
 
-![PCA]({{ site.baseurl }}/assets/img/PCA_2d_example.jpg#small)
+![PCA]({{ site.baseurl }}/assets/img/PCA_2D_example.jpg#small)
 
 {: .center}
 Principal components (PCs) of data shown with gray arrows.
 
 For example, see the red point at $x$=7.7 and $y$=9.2? We could just as easily specify its location with regard to the principal components (the gray arrows): how far along the PC1 and PC2 "axes" is this point? Well, it would be $x_{new}$=4.9 and $y_{new}$=1.1. Note that those coordinates are relative to the origin of our new coordinate system, which is placed in the middle ("centroid") of the data.
 
-![PCA]({{ site.baseurl }}/assets/img/PCA_2d_example_2.jpg#small)
+![PCA]({{ site.baseurl }}/assets/img/PCA_2D_example_2.jpg#small)
 
 {:.center}
 Data plotted in terms of principal components (PCs).
