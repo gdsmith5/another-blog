@@ -4,6 +4,7 @@ title:  "PCA in a Nutshell"
 subtitle: "Heard the term ‘PCA’ being thrown around a lot and wondered what all the fuss is about?"
 cover-img: "/assets/img/ML_dark.jpeg"
 thumbnail-img: "/assets/img/ML.jpeg"
+thumbnail-img-source: "unknown"
 date:   2021-12-28 13:37:06 -0500
 categories: MATLAB
 tags: [Machine Learning, PCA, unsupervised]

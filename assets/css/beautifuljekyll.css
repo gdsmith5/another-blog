@@ -102,6 +102,11 @@ img {
   max-width: 100%;
 }
 
+figcaption {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
 .linked-section {
   padding-top: 3.75rem;
   margin-top: -1.5625rem;
@@ -993,4 +998,10 @@ pre {
 .center {
   display: block;
   margin: 0 auto;
+  text-align: center;
+}
+
+img[src*="#small"] {
+  width:300px;
+  height:200px;
 }

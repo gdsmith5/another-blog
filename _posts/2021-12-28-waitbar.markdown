@@ -4,6 +4,7 @@ title:  "MATLAB Featured Function: waitbar()"
 subtitle: "Have you ever run a script and then waited and waited wondering if it was actually running?"
 cover-img: "/assets/img/binary_dark.jpeg"
 thumbnail-img: "/assets/img/waitbar.jpg"
+thumbnail-img-source: "author"
 date:   2021-12-28 13:37:06 -0500
 categories: MATLAB
 tags: [MATLAB, featured function]
