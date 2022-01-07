@@ -24,6 +24,7 @@ Principal Components Analysis (PCA) is a great place to begin!
 
 The idea behind PCA is that it constructs new variables that are linear combinations of the original variables. These new variables are called the principal components (PCs), and any sample from the dataset can be expressed in terms of these PCs. Think of them as new directions in space, and any data point is represented not by how far along the original axes (e.g. x, y) the point is but how far along the new axes (PCs) it is.
 
+![PCA]({{ site.baseurl }}/assets/img/PCA_2d_example.jpg#small)
 
 ---
 

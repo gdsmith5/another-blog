@@ -46,7 +46,7 @@ close(f)   % close progress bar
 
 When the code is run, a window pops up showing the progress of the for loop:
 
-![waitbar]({{ site.baseurl }}/assets/img/waitbar.jpg)
+![waitbar]({{ site.baseurl }}/assets/img/waitbar.jpg#small)
 
 ---
 
