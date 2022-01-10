@@ -1,0 +1,74 @@
+---
+layout: post
+title:  "MATLAB Featured Function: tic() / toc()"
+subtitle: "It may go viral in your scripts once you discover how useful it is!"
+cover-img: "/assets/img/binary_dark.jpeg"
+thumbnail-img: "/assets/img/stopwatch.jpeg"
+thumbnail-img-source: "Jean Beaufort"
+thumbnail-img-link: "https://www.publicdomainpictures.net/en/view-image.php?image=224218&picture=stopwatch"
+date:   2021-12-28 13:37:06 -0500
+categories: MATLAB
+tags: [MATLAB, featured function]
+comments: false
+readtime: true
+---
+Wouldn't it be really helpful when you're trying to optimize part of a script to have a way of timing it? Maybe you want to see which part is really slowing it down. Or, maybe you want to see how much changing the way you calculate something can improve performance.
+
+Well, MATLAB has a function for that. Actually, it's a pair of functions: `tic()` and `toc()`.
+
+To use them, you just place `tic()` before the code to be timed and `toc()` after it. Then, when you run it the number of seconds elapsed between calling `tic()` and `toc()` is output to the command line.
+
+Here's an example of their use in a code snippet we've seen before, the calculation of $e^x$ using a Taylor series expansion:
+
+``` matlab
+%% MATLAB snippet to calculate Taylor expansion of the exponential
+%% function highlighting use of '``waitbar()``' to generate a progress bar
+
+lim = 5000;   % # of terms in expansion
+x = 0.2;   % value of exponent
+taylor = 0;
+
+f = waitbar(0,'Progress');   % establish progress bar
+
+tic()
+for i = 0:lim
+   waitbar(i/lim,f,'Progress');    % update progress bar
+   taylor = taylor + x^i/factorial(i);   % add term to expansion
+end
+toc()
+
+close(f)   % close progress bar
+```
+
+---
+
+On my computer this takes a full 6.9 seconds. Wow! I wonder what the slow step is. You might think it's the part where we're calculating the $i^{th}$ term in the expansion because that's where all the computational "heavy lifting" is occuring. I'll comment that line out and see how long it takes:
+
+``` matlab
+%  taylor = taylor + x^i/factorial(i);   % add term to expansion
+```
+
+Now it's 6.1 seconds. Hmmmm. What else could it be? I guess it could be the `waitbar()` function. Let's put back the Taylor expansion line and comment out the `waitbar()` line:
+
+``` matlab
+%   waitbar(i/lim,f,'Progress');    % update progress bar
+```
+
+Now it's only 0.03 seconds!!! I guess there's a lot going on in updating the `waitbar()` window every iteration. What if we only update it every 100th iteration?
+
+``` matlab
+for i = 0:lim
+    if mod(i,100) == 0
+        waitbar(i/lim,f,'Progress');    % update progress bar every iteration
+    end
+   taylor = taylor + x^i/factorial(i);   % add term to Taylor expansion
+end
+```
+
+Now it only takes 0.5 seconds. Definitely rendering the `waitbar()` window is taking the lion's share of the time.
+
+Hopefully you now see how the simple `tic()` and `toc()` functions can be handy in optimizing your scripts!
+
+---
+
+Read more at the official MathWorks documentation for the [tic()](https://www.mathworks.com/help/matlab/ref/tic.html){:target="_blank"} and [toc()](https://www.mathworks.com/help/matlab/ref/toc.html){:target="_blank"} functions.
