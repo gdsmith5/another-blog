@@ -6,7 +6,7 @@ cover-img: "/assets/img/ML_dark.jpeg"
 thumbnail-img: "/assets/img/PCA_flash_card.png"
 thumbnail-img-source: "Chris Albon"
 thumbnail-img-link: "https://chrisalbon.com/images/machine_learning_flashcards/Principal_Component_Analysis_print.png"
-date:   2021-12-28 13:37:06 -0500
+date:   2021-09-17 13:37:06 -0500
 categories: MATLAB
 tags: [Machine Learning, PCA, unsupervised]
 comments: false

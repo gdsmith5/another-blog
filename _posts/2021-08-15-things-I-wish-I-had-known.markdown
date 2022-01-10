@@ -5,7 +5,7 @@ subtitle: "Wouldn't it be great if someone would just tell you what you need to 
 cover-img: "/assets/img/binary_dark.jpeg"
 thumbnail-img: "/assets/img/10_things.jpg"
 thumbnail-img-source: "author"
-date:   2021-12-15 13:37:06 -0500
+date:   2021-08-15 13:37:06 -0500
 categories: MATLAB
 tags: [MATLAB, tips & tricks, 10 things]
 comments: false
