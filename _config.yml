@@ -20,8 +20,8 @@ repository: "gdsmith5/mmm"
 # If your website is hosted locally rather than on GitHub, then you need to uncomment the next two parameters to set the url and baseurl
 # *** If you're not sure what this mean, then leave this section as it is. Only modify the url and baseurl if you know what you're doing!***
 
-url: https://gdsmith5.github.io
-baseurl: /mmm
+url: https://gdsmith5.github.io/mmm
+# baseurl: /mmm
 post_url: /_posts
 
 # Your name to show in the footer
