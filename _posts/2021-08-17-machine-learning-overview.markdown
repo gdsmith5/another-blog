@@ -5,7 +5,7 @@ subtitle: "An overview of how multivariate data are used to gain insight."
 cover-img: "/assets/img/ML_dark.jpeg"
 thumbnail-img: "/assets/img/ML_overview.png"
 thumbnail-img-source: "author"
-date:   2021-08-07 13:37:06 -0500
+date:   2021-08-17 13:37:06 -0500
 tags: [Machine Learning, models, unsupervised, supervised, regression, classification, clustering]
 comments: false
 readtime: true

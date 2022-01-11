@@ -6,7 +6,7 @@ cover-img: "/assets/img/ML_dark.jpeg"
 thumbnail-img: "/assets/img/gases_animated.gif"
 thumbnail-img-source: "A. Greg from Wikipedia"
 thumbnail-img-link: "https://en.wikipedia.org/wiki/Kinetic_theory_of_gases#/media/File:Translational_motion.gif"
-date:   2021-08-23 13:37:06 -0500
+date:   2021-08-07 13:37:06 -0500
 tags: [Machine Learning, models]
 comments: false
 readtime: true

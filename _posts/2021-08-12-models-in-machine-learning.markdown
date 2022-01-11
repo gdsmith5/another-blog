@@ -6,7 +6,7 @@ cover-img: "/assets/img/ML_dark.jpeg"
 thumbnail-img: "/assets/img/machine_learning_model.jpeg"
 thumbnail-img-source: "Kai Stachowiak"
 thumbnail-img-link: "https://www.publicdomainpictures.net/pictures/320000/velka/kunstliche-intelligenz.jpg"
-date:   2021-08-26 13:37:06 -0500
+date:   2021-08-12 13:37:06 -0500
 tags: [Machine Learning, models]
 comments: false
 readtime: true
