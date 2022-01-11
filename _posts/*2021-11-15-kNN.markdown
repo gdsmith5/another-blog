@@ -1,0 +1,57 @@
+---
+layout: post
+title:  "Meet the Model: k-Nearest Neighbors"
+subtitle: "A simple but powerful classification algorithm."
+cover-img: "/assets/img/ML_dark.jpeg"
+thumbnail-img: "/assets/img/ML_overview.png"
+thumbnail-img-source: "author"
+date:   2021-11-15 13:37:06 -0500
+tags: [Machine Learning, meet the model, models, supervised, classification]
+comments: false
+readtime: true
+---
+
+The k-Nearest Neighbors (`$k$-NN`) algorithm is a simple way to assign classes to multivariate samples without making implicit assumptions about the distribution of the data. As such, it is a _non-parametric_ model - it does not rely on parameterizing the observations according to a particular functional form.
+
+### The algorithm
+
+The `$k$-NN` model is based on a simple voting algorithm. The $k$ in `$k$-NN` represents the number of closest nieghbors to a sample point that should be "polled".
+
+The way `$k$-NN` works is pretty straightforward. For each new sample to be assigned to a class:
+
+1. Look at the $k$ nearest neighbors to the sample
+2. Count how many of those neighbors belong to each class
+3. Assign the new sample to the class to which the largest number of neighbors belongs.
+
+### An example
+
+### Dealing with ties
+
+What happens if there is a tie, you ask?
+
+As you might imagine, there are several ways in which to deal with ties. One of the more popular ones is to weight the neighbors inversely according to distance, so the closest neighbors have a larger "vote" than the ones farther away.
+
+Another method is to reduce the value of $k$ until the tie is broken, but that is not ideal for a couple of reasons. One, the value of $k$ may have to be reduced by a lot to break the tie. Two, the value of $k$ is often chosen for a reason (read more about this, below), so we might not want to reduce it just to break a tie.
+
+### How to choose $k$ ... oh, I guess that means $k$ is a hyperparameter!
+
+The class that we assign to a new sample can, and often does, depend on the value of $k$, i.e. how many neighbors we "poll." For example, with the simple dataset depicted below, using $k$ = 3 we would assign the new point to the "red" class, but using $k$ = 5 we would assign it to the "blue" class.
+
+[insert figure]
+
+As with the tuning of so many other hyperparameters, the choice of $k$ is a balance between under- and over-fitting to the training data. If we pick too large a value for $k$, then we potentially lose the structure in the data; if it is too small, we wind up with a model that is overly complex and leads to overfitting.
+
+One approach for choosing $k$ would be to vary its value and measure classification error using cross validation. We would then pick the value of $k$ that tends to minimize that error.
+
+### Potential drawbacks of `$k$-NN`
+
+`$k$-NN` is great because it is simple to implement, easy to understand and does not require the distribution of the data to be parameterized. However, there are some potential drawbacks of the model that you should be aware of:
+
+* the algorithm can be **computationally demanding** because the distance between each sample point and _every other point_ must be calculated in order to determine which ones are the $k$ closest,
+
+* the choice of $k$ is **empirical** and somewhat arbitrary (see above); yes, we can vary $k$ and see how the model performs using cross validation, for example, but there will be no "correct" value of $k$ to use,
+
+* the results can depend on the **measure of distance** chosen; should we use Euclidean distance or Mahlanobis distance? So, the measure of distance ends up being another hyperparameter ... in disguise!
+
+
+---

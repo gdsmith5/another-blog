@@ -12,7 +12,7 @@ comments: false
 readtime: true
 ---
 {: .box-note}
-NOTE: This is the first in my series of "10 things I wish I had known when I started using MATLAB."
+NOTE: This is the first in my series of ["10 things I wish I had known when I started using MATLAB"]({% post_url 2021-08-15-10-things-I-wish-I-had-known %}).
 
 When you're busy writing your script and are focused on how to implement something or what the correct syntax for a particular function is or you're just debugging, it can be hard to stop your flow to comment your code. You may feel like you want to wait until it's perfect before adding comments because why comment something that doesn't end up making into the final version? Or, what you are writing seems so obvious that you think "how could anyone, myself included, need an explanation for this?"
 
