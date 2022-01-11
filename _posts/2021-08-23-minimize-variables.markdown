@@ -7,7 +7,6 @@ thumbnail-img: "/assets/img/word_cloud.png"
 thumbnail-img-source: "worditout.com"
 thumbnail-img-link: "https://worditout.com/word-cloud/3676183"
 date:   2021-08-23 13:37:06 -0500
-categories: MATLAB
 tags: [MATLAB, tips & tricks, 10 things]
 comments: false
 readtime: true

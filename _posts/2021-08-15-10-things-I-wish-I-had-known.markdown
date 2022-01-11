@@ -6,7 +6,6 @@ cover-img: "/assets/img/binary_dark.jpeg"
 thumbnail-img: "/assets/img/10_things.jpg"
 thumbnail-img-source: "author"
 date:   2021-08-15 13:37:06 -0500
-categories: MATLAB
 tags: [MATLAB, tips & tricks, 10 things]
 comments: false
 readtime: true
@@ -17,7 +16,7 @@ Over the years, I've compiled a list of little things, pieces of advice, that I'
 
 1. [Comment, comment, comment!]({% post_url 2021-08-19-comment-comment-comment %})
 5. [Minimize # of variables in workspace]({% post_url 2021-08-23-minimize-variables %})
-6. Avoid for loops if possible
+6. Avoid for loops, if possible
 7. Use a “flag” variable for filtering data
 8. Don’t use punctuation or spaces in variable names
 9. Code “folding” - when you just don't want to see your code!

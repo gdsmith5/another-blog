@@ -7,7 +7,6 @@ thumbnail-img: "/assets/img/stopwatch.jpeg"
 thumbnail-img-source: "Jean Beaufort"
 thumbnail-img-link: "https://www.publicdomainpictures.net/en/view-image.php?image=224218&picture=stopwatch"
 date:   2021-09-10 13:37:06 -0500
-categories: MATLAB
 tags: [MATLAB, featured function]
 comments: false
 readtime: true

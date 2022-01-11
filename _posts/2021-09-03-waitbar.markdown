@@ -6,7 +6,6 @@ cover-img: "/assets/img/binary_dark.jpeg"
 thumbnail-img: "/assets/img/waitbar.jpg"
 thumbnail-img-source: "author"
 date:   2021-09-03 13:37:06 -0500
-categories: MATLAB
 tags: [MATLAB, featured function]
 comments: false
 readtime: true
