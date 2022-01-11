@@ -12,7 +12,7 @@ comments: false
 readtime: true
 ---
 {: .box-note}
-NOTE: This is the third in my series of ["10 things I wish I had known when I started using MATLAB"]({% post_url 2021-08-15-10-things-I-wish-I-had-known %}).
+NOTE: This is the third in my series of ["10 things I wish I had known when I started using MATLAB"]({{ site.baseurl }}{% post_url 2021-08-15-10-things-I-wish-I-had-known %}).
 
 
 

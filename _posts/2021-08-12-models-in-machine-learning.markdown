@@ -12,7 +12,7 @@ comments: false
 readtime: true
 ---
 
-In a [previous post]({% post_url 2021-08-07-what-is-a-model %}), we looked at a model as a (imperfect) representation of a physical phenomenon, the behavior of a collection of gas molecules. In this post, we are going to explore what a model is in the context of machine learning.
+In a [previous post]({{ site.baseurl }}{% post_url 2021-08-07-what-is-a-model %}), we looked at a model as a (imperfect) representation of a physical phenomenon, the behavior of a collection of gas molecules. In this post, we are going to explore what a model is in the context of machine learning.
 
 The goal of devloping a machine learning model is to be able to make predictions. In other words, if we have a set of observations (i.e. our data), what would we predict for a new observation? The model is the function, algorithm or process by which we make predictions based on previous observations (i.e. training data).
 

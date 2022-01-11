@@ -12,7 +12,7 @@ comments: false
 readtime: true
 ---
 {: .box-note}
-NOTE: This is the second in my series of ["10 things I wish I had known when I started using MATLAB"]({% post_url 2021-08-15-10-things-I-wish-I-had-known %}).
+NOTE: This is the second in my series of ["10 things I wish I had known when I started using MATLAB"]({{ site.baseurl }}{% post_url 2021-08-15-10-things-I-wish-I-had-known %}).
 
 You start out with your nice blank slate of a script and just start adding a few lines. You aren't sure exactly where you're going with it, so you just keep adding and adding. Then, you look up and your workspace is full of dozens of variables, some of which have super informative names like "temp" and "data." Sound familiar? We've all been there, believe me!
 

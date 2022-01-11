@@ -17,7 +17,7 @@ Well, MATLAB has a function for that. Actually, it's a pair of functions: `tic()
 
 To use them, you just place `tic()` before the code to be timed and `toc()` after it. Then, when you run it the number of seconds elapsed between calling `tic()` and `toc()` is output to the command line.
 
-Here's an example of their use in a code snippet we've seen before, the calculation of $e^x$ using a Taylor series expansion:
+Here's an example of their use in a code snippet [we've seen before]({{ site.baseurl }}{% post_url 2021-09-03-waitbar %}), the calculation of $e^x$ using a Taylor series expansion:
 
 ``` matlab
 %% MATLAB snippet to calculate Taylor expansion of the exponential
