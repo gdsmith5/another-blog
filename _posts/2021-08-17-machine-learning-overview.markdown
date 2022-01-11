@@ -40,7 +40,7 @@ Regression models relate input data to one or more numerical output values. For 
 This is a very simple example, of course, since only one variable (i.e. intensity at one wavelenghth) is used. This sort of (univariate) linear regression is very common in Chemistry, but it leaves a lot of the information "on the table", so to speak. There is almost always additional information contained by the intensities at other wavelengths, so why not include those, too? That's what multivariate regression does.
 
 #### Types of multivariate regression models
-There are many, many different kinds of regression models, including things like multivariate OLS (ordinary least squares), lasso/ridge/elastic regularization, PCR (principal components regression), PLS (partial least squares), GPR (Gaussian process regression) and neural networks, just to name a few.
+There are many, many different kinds of regression models, including things like multivariate OLS (ordinary least squares), lasso/ridge/elastic [regularization][regularization]{:target="_blank"}, [PCR][PCR_PLS]{:target="_blank"} (principal components regression), [PLS][PCR_PLS]{:target="_blank"} (partial least squares), [GPR][GPR]{:target="_blank"} (Gaussian process regression) and [neural networks][neural_regression]{:target="_blank"}, just to name a few.
 
 #### Regression models are supervised
 Regression models are _supervised_ models because they are trained using a dataset for which the values to be predicted are already known somehow. In the example, above, this means that there is a training dataset consisting of spectral intensities and the corresponding concentration.
@@ -88,6 +88,10 @@ Common soft clustering models include: [Gaussian mixture models][GMM]{:target="_
 
 
 ---
+[regularization]: https://www.mathworks.com/discovery/regularization.html
+[PCR_PLS]: https://www.mathworks.com/help/stats/partial-least-squares-regression-and-principal-components-regression.html
+[GPR]: https://www.mathworks.com/help/stats/fitrgp.html
+[neural_regression]: https://www.mathworks.com/help/stats/fitrnet.html
 
 [kNN]: https://www.mathworks.com/help/stats/fitcknn.html
 [lin_discr]: https://www.mathworks.com/help/stats/fitcdiscr.html

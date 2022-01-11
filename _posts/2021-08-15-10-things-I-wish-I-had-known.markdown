@@ -16,7 +16,7 @@ Over the years, I've compiled a list of little things, pieces of advice, that I'
 
 1. [Comment, comment, comment!]({{ site.baseurl }}{% post_url 2021-08-19-comment-comment-comment %})
 5. [Minimize # of variables in workspace]({{ site.baseurl }}{% post_url 2021-08-23-minimize-variables %})
-6. Avoid for loops, if possible
+6. [Avoid for loops, if possible]({{ site.baseurl }}{% post_url 2021-08-27-avoid-for-loops %})
 7. Use a “flag” variable for filtering data
 8. Don’t use punctuation or spaces in variable names
 9. Code “folding” - when you just don't want to see your code!
