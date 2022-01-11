@@ -14,7 +14,7 @@ MATLAB is full of all kinds of shortcuts and neat ways of doing things, but it c
 
 Over the years, I've compiled a list of little things, pieces of advice, that I've passed on to my students. I'll be following up on this post with a series of posts in which I explain a little bit about each of the following tips:
 
-1. [Comment, comment, comment!]({% post_url 2021-08-19-comment-comment-comment %})
+1. [Comment, comment, comment!]({{ site.baseurl }}{% post_url 2021-08-19-comment-comment-comment %})
 5. [Minimize # of variables in workspace]({% post_url 2021-08-23-minimize-variables %})
 6. Avoid for loops, if possible
 7. Use a “flag” variable for filtering data
