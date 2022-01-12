@@ -1,0 +1,65 @@
+---
+layout: post
+title:  "MATLAB Featured Function: refline()"
+subtitle: "A simple line drawing function ... with a hidden superpower."
+cover-img: "/assets/img/binary_dark.jpeg"
+thumbnail-img: "/assets/img/lego_superman.jpeg"
+thumbnail-img-source: "pickpik.com"
+thumbnail-img-link: "https://www.pickpik.com/superman-lego-superhero-hero-super-man-113150"
+date:   2021-09-24 13:37:06 -0500
+tags: [MATLAB, featured function]
+comments: false
+readtime: true
+---
+
+You probably know by now that often there are many, many ways to do something in MATLAB. For example, there are several different ways to draw lines and curves on a figure, including `plot()` and `line()`. You can add vertical lines using `xline()` and horizontal lines using `yline()`.
+
+#### refline()
+
+But, what if you want to add a line with a particular slope and _y_-intercept, like in the example below?
+
+{:.center}
+![waitbar]({{ site.baseurl }}/assets/img/PA_B_vs_A.png#tiny)
+
+
+{:.figcaption}
+Aerosol mass concentrations measured by two channels ("A" and "B") of a PurpleAir sensor.
+
+You can do this very easily by using the `refline()` function:
+
+``` matlab
+figure
+scatter(PA_PM_data.PA_3_A,PA_PM_data.PA_3_B)
+xlabel("PA 3A aerosol mass concentration (\mu g / m^3)")
+ylabel("PA 3B aerosol mass concentration (\mu g / m^3)")
+refline(1,0)
+```
+
+Note that we've passed the arguments `1` and `0` to `refline()` indicating the slope = 1 and the intercept = 0.
+
+{:.box-note}
+Does this example look familiar? These are the same data we saw in the [post on using "flags" to filter data]({{ site.baseurl }}{% post_url 2021-09-07-use-flags %}).
+
+<br>
+
+#### refline()'s superpower!
+
+Sometimes you don't know the values of the slope and intercept to use and you just want to plot a linear least squares best fit line to the data. Do you really need to go through the process of fitting the data (perhaps using `fitlm()` or `fitrlinear()`)? Maybe you just want to see the line on the plot and don't care about the regression coefficients.
+
+Enter `refline()`'s super power! Just call `refline()` with no arguments - no slope or intercept - and it will plot the best fit linear least squares line!
+
+{:.center}
+![waitbar]({{ site.baseurl }}/assets/img/PA_B_vs_A_with_line.png#tiny)
+
+{:.figcaption}
+As above but with a best fit linear least squares line added.
+
+
+Now we can readily see that the best fit line has a slope greater than 1 indicating that the PA 3B channel is reading (slightly) systematically higher than the PA 3A channel.
+
+What if you have more than one set of data plotted on a single figure and you want best fit lines for each? That's where `lsline()` comes in ...
+
+---
+
+Read more at the official MathWorks documentation for the [refline() function](https://www.mathworks.com/help/stats/refline.html){:target="_blank"}.<br>
+Read more at the official MathWorks documentation for the [lsline() function](https://www.mathworks.com/help/stats/lsline.html){:target="_blank"}.

@@ -102,9 +102,12 @@ img {
   max-width: 100%;
 }
 
-figcaption {
-  font-size: 0.8rem;
+.figcaption {
+  font-size: 1.0rem;
   font-style: italic;
+  display: block;
+  margin: 10 auto;
+  text-align: center;
 }
 
 .linked-section {
