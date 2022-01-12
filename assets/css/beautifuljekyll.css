@@ -102,8 +102,8 @@ img {
   max-width: 100%;
 }
 
-.figcaption {
-  font-size: 1.0rem;
+figcaption {
+  font-size: 0.8rem;
   font-style: italic;
   display: block;
   margin: 10 auto;
@@ -1017,5 +1017,13 @@ img[src*="#tiny"] {
   height:auto;
   display: block;
   margin: 0 auto;
+  text-align: center;
+}
+
+.caption {
+  font-size: 1.0rem;
+  font-style: italic;
+  display: block;
+  margin: 10 auto;
   text-align: center;
 }

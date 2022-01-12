@@ -22,7 +22,7 @@ But, what if you want to add a line with a particular slope and _y_-intercept, l
 ![waitbar]({{ site.baseurl }}/assets/img/PA_B_vs_A.png#tiny)
 
 
-{:.figcaption}
+{:.caption}
 Aerosol mass concentrations measured by two channels ("A" and "B") of a PurpleAir sensor.
 
 You can do this very easily by using the `refline()` function:
@@ -51,7 +51,7 @@ Enter `refline()`'s super power! Just call `refline()` with no arguments - no sl
 {:.center}
 ![waitbar]({{ site.baseurl }}/assets/img/PA_B_vs_A_with_line.png#tiny)
 
-{:.figcaption}
+{:.caption}
 As above but with a best fit linear least squares line added.
 
 
