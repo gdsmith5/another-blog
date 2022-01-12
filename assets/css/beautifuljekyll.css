@@ -1002,7 +1002,7 @@ pre {
 }
 
 img[src*="#small"] {
-  max-width:50%;
+  max-width:75%;
   height:auto;
   display: block;
   margin: 0 auto;

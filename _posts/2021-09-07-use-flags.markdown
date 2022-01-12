@@ -1,0 +1,97 @@
+---
+layout: post
+title:  "Use 'flag' variables for filtering "
+subtitle: "A simple way to select data"
+cover-img: "/assets/img/binary_dark.jpeg"
+thumbnail-img: "/assets/img/flag.png"
+thumbnail-img-source: "freesvg.org"
+thumbnail-img-link: "https://freesvg.org/red-flag-13"
+date:   2021-09-07 13:37:06 -0500
+tags: [MATLAB, tips & tricks, 10 things]
+comments: false
+readtime: true
+---
+{: .box-note}
+NOTE: This is the fourth in my series of ["10 things I wish I had known when I started using MATLAB"]({{ site.baseurl }}{% post_url 2021-08-15-10-things-I-wish-I-had-known %}).
+
+There are times when you want to use a subset of your data that fulfills a certain condition or set of conditions. For example, maybe you want just the samples that were collected on a certain day or ones that have a value greater than some threshold.
+
+MATLAB has a very convenient way to do this, which you've probably already used. It's called _indexing_. You can index in many different ways, such as by location in the matrix or logically. For example:
+
+``` matlab
+a = [1:20];
+b = a(a>15)
+```
+
+This little snippet would return:
+
+``` matlab
+b = [16, 17, 18, 19, 20]
+```
+
+---
+
+### A more complicated example - aerosol concentrations
+
+That's a pretty simple example. What if we have a more complicated dataset, say a `table` with a few different columns and we want to select samples based on multiple conditions across those columns? Here's an example of such a table, called `PA_PM_data`, that has 1,782 samples (rows):
+
+{:.center}
+![waitbar]({{ site.baseurl }}/assets/img/PA_PM_data.png#small)
+
+(Note how we can view just the first eight rows by using the `head` function?)
+
+This is a dataset of aerosol mass concentrations (in units of $\tfrac{\mu g}{m^3}$) in the air around Athens, GA made by low-cost sensors (called PurpleAir sensors, hence the "PA"). Each PurpleAir sensor actually has two sensors inside, hence the "A" and "B" distinction for these separate channels. So, the columns labeled "PA_3_A" and "PA_3_B" are the measures of aerosol concentration by this particular PurpleAir sensor, which has been designated sensor #3. Also in the table is a column labeled "PM_ref", which contains the aerosol mass concentrations as measured by a regulatory reference instrument in Athens - this instrument is much more expensive and, in theory, more accurate.
+
+Let's say I want to compare the PurpleAir measurements to the reference measurements for only the samples that meet the following conditions:
+
+* date is in the month of February
+* the ratio of the PurpleAir "A" and "B" channels is > 0.8 and < 1.2 (i.e. the two channels agree to within 20%)
+* the value of "PM_ref" > 5 $\tfrac{\mu g}{m^3}$
+
+<br>
+We could try to include all of those in one logical condition, but it would be long and messy. Instead, I like to set a "flag" variable that I just keep adding conditions to using the logical "AND", a "&" symbol in MATLAB. Here's how I would do that:
+
+``` matlab
+% set flag for month = February
+flag = month(PA_PM_data.Time) == 2;
+
+% add conditions for the two channels agreeing to within 20%
+flag = flag & PA_PM_data.PA_3_A ./ PA_PM_data.PA_3_B > 0.8;
+flag = flag & PA_PM_data.PA_3_A ./ PA_PM_data.PA_3_B < 1.2;
+
+% add condition that PM_ref must be > 5 micrograms/m^3
+flag = flag & PA_PM_data.PM_ref > 5;
+
+% select just the samples that meet all of the above conditions
+PA_PM_data_sel = PA_PM_data(flag,:);
+```
+
+This gives us a total of 204 hourly samples that meet all of those conditions.
+
+Now, if I want to change one of those conditions it is very easy to do because I've separated them out. And, I can even temporarily remove one of them if I want to by just commenting out the appropriate line. I can even select all the samples that _don't_ meet all of the conditions very easily by using `~flag`:
+
+``` matlab
+PA_PM_data_sel = PA_PM_data(~flag,:);
+```
+
+Let's say I want to know how many of the samples satisfy the conditions as I add each one. I can do that easily, too, by summing the `flag` variable after each condition:
+
+``` matlab
+% set flag for month = February
+flag = month(PA_PM_data.Time) == 2;
+sum(flag)
+
+% add conditions for the two channels agreeing to within 20%
+flag = flag & PA_PM_data.PA_3_A ./ PA_PM_data.PA_3_B > 0.8;
+flag = flag & PA_PM_data.PA_3_A ./ PA_PM_data.PA_3_B < 1.2;
+sum(flag)
+
+% add condition that PM_ref must be > 5 micrograms/m^3
+flag = flag & PA_PM_data.PM_ref > 5;
+```
+
+When I do this, I see that 261 samples satisfied the first condition, in other words they were taken in the month of February. And, I learn that of those 261 samples, 226 also had channel measurements that agreed with each other within 20%. Then, of course, applying the last condition leaves us with 204 samples, so that one removed another 22 samples.
+
+---
+
+Using a "flag" variable to apply multiple conditions is a pretty simple trick, but I hope that you can see how useful it can be.

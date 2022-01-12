@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "Avoid for loops, if possible"
-subtitle: "Vectorize!"
+subtitle: "Unleash the power of vectorization!"
 cover-img: "/assets/img/binary_dark.jpeg"
 thumbnail-img: "/assets/img/end_for.png"
 thumbnail-img-source: "author"
-date:   2021-08-23 13:37:06 -0500
+date:   2021-08-27 13:37:06 -0500
 tags: [MATLAB, tips & tricks, 10 things]
 comments: false
 readtime: true
