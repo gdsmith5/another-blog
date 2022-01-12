@@ -1008,3 +1008,11 @@ img[src*="#small"] {
   margin: 0 auto;
   text-align: center;
 }
+
+img[src*="#tiny"] {
+  max-width:50%;
+  height:auto;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}

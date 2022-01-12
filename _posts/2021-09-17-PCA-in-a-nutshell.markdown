@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "PCA in a Nutshell"
+title:  "Meet the Model: PCA in a Nutshell"
 subtitle: "Heard the term ‘PCA’ being thrown around a lot and wondered what all the fuss is about?"
 cover-img: "/assets/img/ML_dark.jpeg"
 thumbnail-img: "/assets/img/PCA_flash_card.png"
 thumbnail-img-source: "Chris Albon"
 thumbnail-img-link: "https://chrisalbon.com/images/machine_learning_flashcards/Principal_Component_Analysis_print.png"
 date:   2021-09-17 13:37:06 -0500
-tags: [Machine Learning, PCA, unsupervised]
+tags: [Machine Learning, meet the model, PCA, unsupervised]
 comments: false
 readtime: true
 ---

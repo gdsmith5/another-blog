@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Use 'flag' variables for filtering "
+title:  "Use 'flag' variables for filtering"
 subtitle: "A simple way to select data"
 cover-img: "/assets/img/binary_dark.jpeg"
 thumbnail-img: "/assets/img/flag.png"
