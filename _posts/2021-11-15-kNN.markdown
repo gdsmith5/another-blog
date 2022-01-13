@@ -25,6 +25,13 @@ The way `$k$-NN` works is pretty straightforward. For each new sample to be assi
 
 ### An example
 
+Let's look at a simple, familiar example - the Fisher iris dataset. Below, I've plotted the petal length vs. the petal width color coded by the corresponding species: 'setosa', 'versicolor' or 'virginica'.
+
+{:.center}
+![waitbar]({{ site.baseurl }}/assets/img/fisher_iris_petal_length_width.png#small)
+
+We can clearly see the three "classes" (i.e. species) in the plot. What if we were to zoom in to 
+
 ### Dealing with ties
 
 What happens if there is a tie, you ask?

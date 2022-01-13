@@ -27,6 +27,6 @@ I hope you, too, will benefit from these posts and maybe even enjoy looking arou
 
 ### My story
 
-I'm a professor of Chemistry at the University of Georgia. My research lab builds instruments to measure how aerosol particles in the atmosphere interact with sunlight. We also use Machine Learning to identify clusters of aerosols with similar optical properties.     [SmithLab group website](http://www.smithlab.uga.edu){:target="_blank"}
+I'm a professor of Chemistry at the University of Georgia. My research lab builds instruments to measure how aerosol particles in the atmosphere interact with sunlight. We also use Machine Learning to identify clusters of aerosols with similar optical properties.    Find out more at: [SmithLab group website](http://www.smithlab.uga.edu){:target="_blank"}
 
 I teach undergraduate Thermodynamics and Statistical Thermodynamics (CHEM 3212), graduate Chemometrics - Machine Learning for Chemistry (CHEM 8860) and a First-Year Odyssey course on baseball statistics (yes, freshman can take a 1-credit class in which they learn about advanced baseball stats!).
