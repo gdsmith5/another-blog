@@ -40,4 +40,4 @@ You might also notice that there is a `-` next to the `for` loop; clicking on th
 
 ---
 
-Read more about [code folding](https://www.mathworks.com/help/matlab/matlab_prog/edit-and-format-code.html#brazeg3-1){:target="_blank"} at the official MathWorks documentation on editing and formatting code.
+Read more about [code folding](https://www.mathworks.com/help/matlab/matlab_prog/edit-and-format-code.html#brazeg3-1){:target="_blank"} in the official MathWorks documentation on editing and formatting code.

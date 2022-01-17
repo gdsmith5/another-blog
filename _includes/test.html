@@ -1,0 +1,51 @@
+
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>test</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-01-15"><meta name="DC.source" content="test.m"><style type="text/css">
+
+
+
+pre, code { font-size:12px; }
+
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2 id="1">This section calculates the Taylor series expansion for e^x</h2><pre class="codeinput">taylor = 0;
+lim = 10;
+x = 0.2;
+
+<span class="comment">% calculate the Taylor series expansion for e^x using 'lim' number of terms</span>
+<span class="keyword">for</span> i = 0:lim
+   taylor = taylor + x^i/factorial(i);
+<span class="keyword">end</span>
+</pre><h2 id="2">This section calulates the difference between the Taylor expansion and the calculated value of e^x</h2><pre class="codeinput"><span class="comment">% difference = taylor - exp(x);   commented out to see if this is slowing it down</span>
+</pre></div><!--
+
+--></body></html>

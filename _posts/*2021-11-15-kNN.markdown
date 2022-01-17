@@ -6,7 +6,7 @@ cover-img: "/assets/img/ML_dark.jpeg"
 thumbnail-img: "/assets/img/ML_overview.png"
 thumbnail-img-source: "author"
 date:   2021-11-15 13:37:06 -0500
-tags: [Machine Learning, meet the model, models, supervised, classification]
+tags: [Machine Learning, meet the model, supervised, classification]
 comments: false
 readtime: true
 ---

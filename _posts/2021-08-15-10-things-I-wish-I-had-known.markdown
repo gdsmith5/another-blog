@@ -20,8 +20,8 @@ Over the years, I've compiled a list of little things, pieces of advice, that I'
 7. [Use a “flag” variable for filtering]({{ site.baseurl }}{% post_url 2021-09-07-use-flags %})
 8. [Don’t use punctuation or spaces in variable names]({{ site.baseurl }}{% post_url 2021-09-14-dont-use-punctuation %})
 9. [Code “folding” - when you just don't want to see your code!]({{ site.baseurl }}{% post_url 2021-09-20-code-folding %})
-10. Run code in sections - when you want to run part of your script
-2. Cell arrays - arrays of anything!
+10. [Run code in sections - sometimes you just want to run part of your script]({{ site.baseurl }}{% post_url 2021-10-02-run-sections %})
+2. [Cell arrays - arrays of anything!]({{ site.baseurl }}{% post_url 2021-10-10-cell-arrays %})
 3. Structures - it's all about the dot
 4. Tables/timetables - data references with names
 

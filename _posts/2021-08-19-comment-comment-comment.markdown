@@ -19,7 +19,7 @@ Believe me, I've been there. In fact, I never used to comment my code (in any la
 
 However, I'm a reformed commenter, and I'm here to tell you that **you should comment!!!**
 
-There are a multitude of reasons why you should comment:
+There is a multitude of reasons why you should comment:
 {: style="color:red; font-size: 120%;"}
 
 > Commenting makes it easier for others to read, understand and modify your code.
@@ -87,11 +87,12 @@ difference = taylor - exp(x);
 ```
 <br />
 
-> Commenting provides a convenient way to parts of the script that you want to remove temporarily.
+> Commenting provides a convenient way to ignore parts of the script temporarily.
 
 Sometimes you're debugging your script and you think the problem is on a certain line or set of lines. You can comment them out and then re-run the script to see how it does. Then, it's very easy to uncomment them if you decide you want to keep them. That way, you don't have to worry about losing something if you temporarily delete it as you debug.
 
 example:
+
 ``` matlab
 %% This section calculates the Taylor series expansion for e^x
 
