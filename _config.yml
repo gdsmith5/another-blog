@@ -32,6 +32,7 @@ author: Geoffrey D. Smith
 navbar-links:
   About: "about"
   Archive: "tags"
+  Projects: "projects"
   SmithLab site: "http://www.smithlab.uga.edu"
 
 # --- Logo --- #

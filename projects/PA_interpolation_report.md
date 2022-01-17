@@ -114,4 +114,3 @@ The same surface can be viewed in a slightly more informative way with the conto
 
 ### MATLAB script 
 
-{% include PA_interpolation_project.html %}

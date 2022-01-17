@@ -9,7 +9,7 @@ subtitle: A selection of data science and machine learning projects I've complet
 
 In this project I gathered data from 13 low-cost PurpleAir aerosol sensors as well as from a regulatory monitor in Athens, GA. I then built a linear regression model to correct the low-cost sensor measurements to be more accurate.
 
-## [Building regression models for predicting specific gravity of beer wort from NIR spectra]()
+## [Building regression models for predicting specific gravity of beer wort from NIR spectra]({{ site.baseurl }}Beer_regression_report)
 
 **regression** &emsp; **LASSO** &emsp; **PLS** &emsp; **GPR** &emsp; **MATLAB**
 
@@ -23,8 +23,10 @@ Models include: LASSO (read [my post about LASSO and Ridge regression]({{ site.b
 
 In this project I used GPR (Gaussian process regression) to interpolate low-cost PurpleAir aerosol sensor data around Athens, GA and to visualize it on a map of the area.
 
+<!---
 ## [MLB batter similarity using PCA]()
 
 **PCA** &emsp; **baseball** &emsp; **Python** &emsp; **MATLAB**
 
 In this project I used MATLAB to call some Python functions for retrieving 2021 MLB batting statistics. Then, I built a PCA model on the statistics to identify player "profiles" that explain the most variance in the data.
+--->

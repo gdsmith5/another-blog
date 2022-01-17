@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Regression of beer wort for predicting amount of dissolved solids
+title: Regression of beer to predict dissolved solids
 subtitle: Using Machine Learning to estimate potential alcohol content
 tags: [regression]
 ---
@@ -10,6 +10,9 @@ In this project, I built a set of Machine Learning models to predict the concent
 
 {:.center}
 ![waitbar]({{ site.baseurl }}/assets/img/beer_wort_spec_gravity.jpeg#tiny)
+
+{:.caption}
+[By Schlemazl - Own work, CC BY-SA 3.0](https://commons.wikimedia.org/w/index.php?curid=22601592){:target="_blank"}
 
 <br>
 ### Outline
@@ -23,80 +26,111 @@ In this project, I built a set of Machine Learning models to predict the concent
 <br>
 ### Motivation
 
-When brewing beer, the concentration of dissolved solids in the beer wort, the initial malty liquid that eventually becomes beer, is an important quantity to measure. That's because its value is correlated with the eventual alcohol content of the final product. Traditionally, the concentration of dissolved solids is estimated by measuring the specific gravity, or density relative to water, of the wort.
+When brewing beer, the concentration of dissolved solids in the wort, the initial malty liquid that eventually becomes beer, is an important quantity to measure. That's because its value is correlated with the eventual alcohol content of the final product. Traditionally, the concentration of dissolved solids is estimated by measuring the specific gravity, or density relative to water, of the wort.
 
-However, making such a measurement requires extracting a sample of the wort and 
+However, making such a measurement requires extracting a sample of the wort and using a hygrometer. The hygrometer is weighted to sink by a specific amount depending on the density - the denser the wort, the less it sinks. This process must be repeated every time the specific gravity is measured as the beer progresses through the fermentation process.
+
+NIR (near-infrared) spectroscopy provides a convenient alternative since it can be performed non-destructively and in an online process. The trick is, of course, figuring out how to relate the measured spectra to the specific gravity, or more precisely, the concentration of dissolved solids.
 
 ### Objective
 
-Here, I used data from PurpleAir sensors and a regulatory monitor located in Athens, GA to develop a local correction to make these sensors more accurate. 
+Here, I used a published dataset ([Nørgaard, L. et al. Interval Partial Least-Squares Regression ( i PLS): A Comparative Chemometric Study with an Example from Near-Infrared Spectroscopy. Appl Spectrosc 54, 413–419 (2000)](https://journals.sagepub.com/doi/10.1366/0003702001949500){:target="_blank"}) of NIR spectra and dissolved solid concentrations, called "extract" (in crazy brewing units called degrees Plato, degP), to build a set of Machine Learning regression models. 
 
 ### Approach
 
 The overall approach I took consisted of the following steps:
 
-1. obtain data from PurpleAir sensors and regulatory monitor in Athens, GA
-2. sync the two datasets and combine into a single `timetable`
-3. clean the dataset
-4. train a linear regression model to predict the particulate matter concentration from the PurpleAir measurements
-5. compare performance of trained Athens model to "one-size-fits-all" correction on withheld test dataset
+1. explore the data by plotting NIR spectra
+2. build LASSO model
+3. build PLS model
+4. build GPR model
 
 ### Results
 
 #### Data
 
-I obtained hourly-averaged data from Jan. 1, 2021 to Oct. 31, 2021 from 13 PurpleAir sensors located within 20 km of the regulatory monitor in Athens, GA. (these data are publicly available from [PurpleAir](https://api.purpleair.com/){:target="_blank"} and the [U.S. EPA's Air Quality System](https://aqs.epa.gov/aqsweb/documents/data_api.html){:target="_blank"} API services - details of the MATLAB scripts I wrote to access these data will be described in a future project!)
+The dataset consists of 40 samples with a NIR spectrum and dissolved solids concentration (ranging from 4.2 - 18.8 degP) for each.
 
 {:.center}
-![waitbar]({{ site.baseurl }}/assets/img/PA_map.png#small)
+![waitbar]({{ site.baseurl }}/assets/img/beer_spectra.png#small)
 
 {:.caption}
-Particulate matter concentration values measured by PurpleAir sensors (orange and yellow dots) and the reference monitor (blue dot) around Athens, GA. Oct. 25, 2021.
+NIR spectra of 40 beer wort samples from Nørgaard et al., Appl Spectrosc 54, 413–419 (2000).
 
-#### Cleaning
+Notice that there are not much differences in the spectra despite the fact that the dissolved solids concentration varies by more than a factor of four. This is a perfect example of how multivariate regression can be used to identify key features (i.e. wavelengths) that are correlated with the quantity of interest.
 
-Initially, I had a dataset with 92,534 hourly-averaged samples. After cleaning, in which entries with "NaN" and those for which the "A" and "B" channels disagreed by more than 30% were removed, I had 51,262 samples.
+We are going to use three different regssion models:
 
-#### Splitting into training/test datasets
+- LASSO regularization
+- PLS (partial least squares)
+- GPR (Gaussian process regression)
 
-This dataset was split into a training set (Jan. 1, 2021 - Aug. 30, 2021) and a test set (Sep. 1, 2021 - Oct. 31, 2021) with 38,870 and 12,392 hourly-averaged samples, respectively.
+#### LASSO regularization
 
+LASSO regularization adds an additional constraint to the optimization problem, thereby providing a unique solution where otherwise there wouldn't be one. Practically, this results in a form of feature selection in which the regression coefficients for many of the variables are exactly zero.
 
-#### Building linear model
+Read [my post on LASSO and Ridge regression]({{ site.baseurl }}{% post_url 2021-10-14-ridge-lasso %}) to learn more about how regularization is used when problems are underdetermined.
 
-The linear model was built on the training set resulting in the following correction equation:
-
-$$
-PM_{corr} = 4.20 + 0.182 \cdot PA_A + 0.22 \cdot PA_B
-$$
-
-where $PM_{corr}$ is the corrected particulate matter concentration (in $\mu g / m^3$), $PA_A$ and $PA_B$ are the PurpleAir channel A and B measurements, respectively.
-
-#### Model performance
-
-5-fold cross validation was used, and RMSECV and MAE from the cross validation were calculated. The model was then run with the test data ("Predicted") and RMSEP and MAE values calculated, as well.
+The variables selected using the beer dataset are shown below:
 
 {:.center}
-![waitbar]({{ site.baseurl }}/assets/img/Athens_PA_table.png#small)
+![waitbar]({{ site.baseurl }}/assets/img/beer_lasso_variables.png#small)
 
-<br>
-For comparison, a popular "one-size-fits-all" correction (the "[LRAPA model](https://www.lrapa.org/DocumentCenter/View/4147/PurpleAir-Correction-Summary){:target="_blank"}") was also used.
+{:.caption}
+Average NIR spectrum of beer wort samples (red) and regression coefficients (blue).
 
-These performance metrics should be considered in relation to the average measurements of $PM_{ref}$ of 10.3 $\mu g / m^3$.
+Note that only seven wavelengths have non-zero coefficients: 1184, 1320, 1326, 2126, 2128, 2136 and 2246 nm, and of these only three dominate.
+
+Using 5-fold cross validation, we can see how well we can expect the LASSO model to perform on new data:
+
+{:.center}
+![waitbar]({{ site.baseurl }}/assets/img/beer_lasso_cv.png#small)
+
+{:.caption}
+Cross-valided predicted values of the "extract".
+
+The extract **RMSECV** for this model is **0.38 degP**, which is pretty good considering that the average extract value is 11.1 degP.
+
+#### PLS
+
+Partial least squares regression builds a set of _latent variables_ that are particularly good for predicting values of the predictant (i.e. the "extract") becuase it uses both sets of data (i.e. the NIR spectra and the "extract" values) when constructing them. You can think of it as related to PCA, but whereas PCA tries to explain the variance of the NIR spectra, PLS tries to explain the variance of both the NIR spectra and the extract values (it's a little more involved than that, but that's the basic idea).
+
+Sounds good, right? Let's use all of the data to come up with a great regression model. So, how does PLS do?
+
+Well ... the **RMSECV** of the PLS model is an underwhelming **0.94 degP**. This is a lot worse than what we got with LASSO regression (0.38 degP) and is clearly not acceptable. What happened? Well, the PLS model was overtrained on the training data.
+
+To address this issue, I used a variable ranking algorithm called _RReliefF_ (see MathWorks documentation on the `relieff()` function) to select variables. Specifically, I chose just the top 10% (93) wavelengths.
+
+{:.center}
+![waitbar]({{ site.baseurl }}/assets/img/beer_PLS_variables.png#small)
+
+{:.caption}
+Average NIR spectrum of beer wort samples (red) and RReliefF weights for the top 10% of wavelengths (blue).
+
+But, in order to avoid so-called _data leakage_, I used this variable selection inside each of my five folds in the 5-fold cross validation. Thus, each of the five PLS models that were built as part of the cross validation could have been built on a different set of (93) variables.
+
+The **RMSECV** for this approach was a much more reasonable **0.24 degP**.
+
+#### GPR
+
+I also built a GPR (Gaussian process regression) model, which is basically a super cool interpolation (a little too complicated to explain, here). I ran into a similar problem with the GPR as I did with the PLS regession - overfitting when using all of the wavelengths in the spectra. Only this time it was _a lot_ worse! The RMSECV was 2.3 degP! I may as well just use the average extract value as my guess for each sample ... literally!
+
+However, if I use RRelief to select variables, I get a much better **RMSECV = 0.23 degP**.
 
 ### Conclusion
 
 {: .box-note}
-**The linear model built specifically on Athens, GA data performed significantly better in cross validation and on the test dataset (from Athens, GA) than did the "one-size-fits-all" LRAPA model.**
+**Multivariate regression models were built that can predict the extract (i.e. dissolved solids concentration) very accurately from NIR spectra**
 
-- In fact, the Athens model performed about a whole $\mu g / m^3$ (11%) better than the LRAPA model.
+- All three models worked well with only a subset of the variables (i.e. wavelengths).
 
-- While not surprising, this exercise goes to show that there can be local differences that are important to include when trying to make the most accurate predictions with the PurpleAir model.
+- Using all of the variables led to gross overfitting using the PLS and GPR models.
 
-- In addition to providing a better correction for the PurpleAir sensors in the Athens, GA area, the linear model built here might also prove useful for use with sensors in other, similar environments.
+- Variable selection using RReliefF improved performance of the PLS and GPR models.
+
+- Using NIR spectroscopy to measure extract values seems feasible and convenient.
 
 ---
 
 ### MATLAB script 
 
-{% include Athens_PA_cal_project.html %}
