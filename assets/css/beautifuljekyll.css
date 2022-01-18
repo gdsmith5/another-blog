@@ -1025,6 +1025,14 @@ img[src*="#tiny"] {
   text-align: center;
 }
 
+img[src*="#itsy"] {
+  max-width:25%;
+  height:auto;
+  display: block;
+  margin: 1.0rem 1.0rem;
+  text-align: center;
+}
+
 .caption {
   font-size: 1.0rem;
   font-style: italic;

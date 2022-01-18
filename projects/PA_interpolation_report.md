@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Interpolating PurpleAir data
+title: Interpolating low-cost sensor data
 subtitle: Using GPR to interpolate network of data across the Southeast U.S.
 tags: [interpolation, aerosol]
 ---
@@ -114,3 +114,4 @@ The same surface can be viewed in a slightly more informative way with the conto
 
 ### MATLAB script 
 
+{% include PA_interpolation.html %}

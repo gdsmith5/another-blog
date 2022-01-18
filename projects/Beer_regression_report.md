@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Regression of beer to predict dissolved solids
+title: Regression of NIR beer spectra
 subtitle: Using Machine Learning to estimate potential alcohol content
 tags: [regression]
 ---
@@ -9,7 +9,7 @@ tags: [regression]
 In this project, I built a set of Machine Learning models to predict the concentration of dissolved solids in beer wort from NIR (near-infrared) spectra.
 
 {:.center}
-![waitbar]({{ site.baseurl }}/assets/img/beer_wort_spec_gravity.jpeg#tiny)
+![waitbar]({{ site.baseurl }}/assets/img/beer_wort_spec_gravity.jpeg#small)
 
 {:.caption}
 [By Schlemazl - Own work, CC BY-SA 3.0](https://commons.wikimedia.org/w/index.php?curid=22601592){:target="_blank"}
@@ -134,3 +134,5 @@ However, if I use RRelief to select variables, I get a much better **RMSECV = 0.
 
 ### MATLAB script 
 
+{% include beer_lasso.html %}
+{% include beer_PLS.html %}

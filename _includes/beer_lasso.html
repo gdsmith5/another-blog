@@ -1,0 +1,213 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HW6_2_MLR_lasso</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-01-17"><meta name="DC.source" content="HW6_2_MLR_lasso.m"><style type="text/css">
+
+html { min-height:100%; margin-bottom:1px; }
+html body td { vertical-align:top; text-align:left; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">HW6_2: Multiple linear regression of beer extract data using LASSO</a></li><li><a href="#2">2.1 feature selection using Lasso</a></li><li><a href="#3">Figure 1: plot of MSE vs. lambda parameter value</a></li><li><a href="#4">2.2 Figure 2: plot of best-fit regression coefficients</a></li><li><a href="#5">2.3 Figure 3: plot of predicted extract values vs. measured extract values</a></li><li><a href="#6">2.4 RMSE for cross validation</a></li><li><a href="#7">Figure 4: plot of CV-predicted extract values vs. measured extract values</a></li><li><a href="#8">sumsqr() function</a></li></ul></div><h2 id="1">HW6_2: Multiple linear regression of beer extract data using LASSO</h2><pre class="codeinput">close <span class="string">all</span>
+clear
+load <span class="string">beer_HW6</span>
+
+tic
+</pre><h2 id="2">2.1 feature selection using Lasso</h2><p>use cross-validation to find best value of lambda use Monte Carlo to average out randomness from cross-validation</p><pre class="codeinput">[B,FitInfo] = lasso(beer_spectra,extract_data,<span class="string">'CV'</span>,3);
+</pre><h2 id="3">Figure 1: plot of MSE vs. lambda parameter value</h2><pre class="codeinput">lassoPlot(B,FitInfo,<span class="string">'PlotType'</span>,<span class="string">'CV'</span>);
+legend(<span class="string">'show'</span>) <span class="comment">% Show legend</span>
+
+<span class="comment">% get fit coefficients and lambda within 1 MSE of best-fit lambda</span>
+idxLambda1SE = FitInfo.Index1SE;
+b = B(:,idxLambda1SE);
+b0 = FitInfo.Intercept(idxLambda1SE);
+lambda = FitInfo.Lambda1SE;
+numcoeffs = numel(b(abs(b)&gt;0))
+slm_idx = find(b);
+
+<span class="comment">% get fit coefficients and best-fit value of lambda</span>
+<span class="comment">% idxLambdaMinMSE = FitInfo.IndexMinMSE;</span>
+<span class="comment">% b = B(:,idxLambdaMinMSE);</span>
+<span class="comment">% b0 = FitInfo.Intercept(idxLambdaMinMSE);</span>
+<span class="comment">% lambda = FitInfo.LambdaMinMSE;</span>
+<span class="comment">% numel(b(b&gt;0))</span>
+</pre><pre class="codeoutput">
+numcoeffs =
+
+    11
+
+</pre><img vspace="5" hspace="5" src="HW6_2_MLR_lasso_01.png" alt=""> <h2 id="4">2.2 Figure 2: plot of best-fit regression coefficients</h2><pre class="codeinput">figure
+plot(wavelength,b)
+ylabel(<span class="string">"regression coefficient"</span>)
+hold <span class="string">on</span>
+yyaxis <span class="string">right</span>
+plot(wavelength,mean(beer_spectra));
+xlabel(<span class="string">"variable"</span>)
+ylabel(<span class="string">'intensity (arb. units)'</span>)
+</pre><img vspace="5" hspace="5" src="HW6_2_MLR_lasso_02.png" alt=""> <h2 id="5">2.3 Figure 3: plot of predicted extract values vs. measured extract values</h2><pre class="codeinput">figure
+yhat = beer_spectra*b + b0;
+scatter(extract_data,yhat)
+lsline
+xlabel(<span class="string">"measured extract (degP)"</span>)
+ylabel(<span class="string">"predicted extract (degP)"</span>)
+RMSEC = sqrt(sumsqr(yhat-extract_data)/(numel(extract_data)-numcoeffs));
+<span class="comment">% RMSEC = sqrt(immse(extract_data,yhat));</span>
+</pre><h2 id="6">2.4 RMSE for cross validation</h2><pre class="codeinput"><span class="comment">% establish partitioning of data to use for 5-fold CV</span>
+k=5;
+CV = cvpartition(length(extract_data),<span class="string">'KFold'</span>,k);
+yhat = zeros(size(extract_data));
+<span class="keyword">for</span> i=1:k
+    [B,FitInfo] = lasso(beer_spectra(CV.training(i),:),extract_data(CV.training(i)),<span class="string">'CV'</span>,3);
+    b_k = B(:,FitInfo.Index1SE);
+    yhat(CV.test(i)) = beer_spectra(CV.test(i),:)*b_k+FitInfo.Intercept(FitInfo.Index1SE);
+    RMSECV(i) = sqrt(sumsqr(yhat(CV.test(i))-extract_data(CV.test(i)))/numel(extract_data(CV.test(i))));
+<span class="keyword">end</span>
+RMSECV = mean(RMSECV);
+</pre><h2 id="7">Figure 4: plot of CV-predicted extract values vs. measured extract values</h2><pre class="codeinput">figure
+scatter(extract_data,yhat)
+xlabel(<span class="string">"measured extract (degP)"</span>)
+ylabel(<span class="string">"CV-predicted extract (degP)"</span>)
+lsline
+mdl = fitlm(extract_data,yhat);
+text(14,6,[<span class="string">'R^2: '</span>,num2str(mdl.Rsquared.Ordinary)]);
+
+toc
+</pre><pre class="codeoutput">Elapsed time is 16.902215 seconds.
+</pre><img vspace="5" hspace="5" src="HW6_2_MLR_lasso_03.png" alt=""> <h2 id="8">sumsqr() function</h2><pre class="codeinput"><span class="keyword">function</span> sqr = sumsqr(x)
+    sqr = x'*x;
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% HW6_2: Multiple linear regression of beer extract data using LASSO
+
+close all
+clear
+load beer_HW6
+
+tic
+
+%% 2.1 feature selection using Lasso
+% use cross-validation to find best value of lambda
+% use Monte Carlo to average out randomness from cross-validation
+[B,FitInfo] = lasso(beer_spectra,extract_data,'CV',3);
+
+%% Figure 1: plot of MSE vs. lambda parameter value
+lassoPlot(B,FitInfo,'PlotType','CV');
+legend('show') % Show legend
+
+% get fit coefficients and lambda within 1 MSE of best-fit lambda
+idxLambda1SE = FitInfo.Index1SE;
+b = B(:,idxLambda1SE);
+b0 = FitInfo.Intercept(idxLambda1SE);
+lambda = FitInfo.Lambda1SE;
+numcoeffs = numel(b(abs(b)>0))
+slm_idx = find(b);
+
+% get fit coefficients and best-fit value of lambda
+% idxLambdaMinMSE = FitInfo.IndexMinMSE;
+% b = B(:,idxLambdaMinMSE);
+% b0 = FitInfo.Intercept(idxLambdaMinMSE);
+% lambda = FitInfo.LambdaMinMSE;
+% numel(b(b>0))
+
+%% 2.2 Figure 2: plot of best-fit regression coefficients
+figure
+plot(wavelength,b)
+ylabel("regression coefficient")
+hold on
+yyaxis right
+plot(wavelength,mean(beer_spectra));
+xlabel("variable")
+ylabel('intensity (arb. units)')
+
+%% 2.3 Figure 3: plot of predicted extract values vs. measured extract values
+figure
+yhat = beer_spectra*b + b0;
+scatter(extract_data,yhat)
+lsline
+xlabel("measured extract (degP)")
+ylabel("predicted extract (degP)")
+RMSEC = sqrt(sumsqr(yhat-extract_data)/(numel(extract_data)-numcoeffs));
+% RMSEC = sqrt(immse(extract_data,yhat));
+
+%% 2.4 RMSE for cross validation
+
+% establish partitioning of data to use for 5-fold CV
+k=5;
+CV = cvpartition(length(extract_data),'KFold',k);
+yhat = zeros(size(extract_data));
+for i=1:k
+    [B,FitInfo] = lasso(beer_spectra(CV.training(i),:),extract_data(CV.training(i)),'CV',3);
+    b_k = B(:,FitInfo.Index1SE);
+    yhat(CV.test(i)) = beer_spectra(CV.test(i),:)*b_k+FitInfo.Intercept(FitInfo.Index1SE);
+    RMSECV(i) = sqrt(sumsqr(yhat(CV.test(i))-extract_data(CV.test(i)))/numel(extract_data(CV.test(i))));
+end
+RMSECV = mean(RMSECV);
+
+%% Figure 4: plot of CV-predicted extract values vs. measured extract values
+figure
+scatter(extract_data,yhat)
+xlabel("measured extract (degP)")
+ylabel("CV-predicted extract (degP)")
+lsline
+mdl = fitlm(extract_data,yhat);
+text(14,6,['R^2: ',num2str(mdl.Rsquared.Ordinary)]);
+
+toc
+
+%% sumsqr() function
+function sqr = sumsqr(x)
+    sqr = x'*x;
+end
+##### SOURCE END #####
+--></body></html>

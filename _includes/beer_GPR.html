@@ -1,0 +1,331 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HW6_4_GPR</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-01-17"><meta name="DC.source" content="HW6_4_GPR.m"><style type="text/css">
+
+html { min-height:100%; margin-bottom:1px; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">HW6_4: GPR of beer extract data</a></li><li><a href="#2">4.1 Run GPR on all variables with default hyperparameters</a></li><li><a href="#3">Calculate RMSEC using all variables</a></li><li><a href="#4">4.2 Run GPR on best 10% of variables from ReliefF with default hyperparameters</a></li><li><a href="#5">Calculate RMSEC using just selected variables</a></li><li><a href="#6">4.3 Run GPR with all variables using 5-fold CV</a></li><li><a href="#7">4.4 Run GPR with selected variables using 5-fold CV</a></li><li><a href="#8">Run GPR on data using built-in 10-fold CV</a></li><li><a href="#9">sumsqr() function</a></li></ul></div><h2 id="1">HW6_4: GPR of beer extract data</h2><pre class="codeinput">tic
+close <span class="string">all</span>
+clear
+load <span class="string">beer_HW6</span>
+cv = cvpartition(height(beer_spectra),<span class="string">'Holdout'</span>,0.25);
+beer_spectra_test = beer_spectra(cv.test,:);
+extract_data_test = extract_data(cv.test);
+beer_spectra = beer_spectra(cv.training,:);
+extract_data = extract_data(cv.training);
+[n,m] = size(beer_spectra);
+</pre><h2 id="2">4.1 Run GPR on all variables with default hyperparameters</h2><pre class="codeinput">X = beer_spectra; y = extract_data;
+c = cvpartition(length(y),<span class="string">'Holdout'</span>,0.25);
+train_idx = training(c);
+test_idx = ~train_idx;
+gprMdl = fitrgp(X(train_idx,:),y(train_idx));
+y_pred = predict(gprMdl,X);
+
+figure
+scatter(y(train_idx),y_pred(train_idx))
+hold <span class="string">on</span>
+scatter(y(test_idx),y_pred(test_idx),<span class="string">'or'</span>)
+refline(1,0)
+</pre><img vspace="5" hspace="5" src="HW6_4_GPR_01.png" alt=""> <h2 id="3">Calculate RMSEC using all variables</h2><pre class="codeinput">gprMdl = fitrgp(X,y);
+y_pred = predict(gprMdl,X);
+RMSEC = sqrt(sumsqr(y_pred-extract_data)/numel(y_pred));
+</pre><h2 id="4">4.2 Run GPR on best 10% of variables from ReliefF with default hyperparameters</h2><p>set up holdout partitioning</p><pre class="codeinput">c = cvpartition(length(extract_data),<span class="string">'Holdout'</span>,0.25);
+train_idx = training(c);
+test_idx = ~train_idx;
+
+<span class="comment">% select training data and variables using ReliefF</span>
+X = beer_spectra(train_idx,:); y = extract_data(train_idx);
+[idx,weights] = relieff(X,y,5);
+idx = idx(1:round(m/10));
+X = X(:,idx);
+
+<span class="comment">% fit GPR model and predict extract values</span>
+gprMdl = fitrgp(X,y);
+y_pred = predict(gprMdl,beer_spectra(:,idx));
+
+<span class="comment">% plot training and test data</span>
+figure
+scatter(extract_data(train_idx),y_pred(train_idx))
+hold <span class="string">on</span>
+scatter(extract_data(test_idx),y_pred(test_idx),<span class="string">'or'</span>)
+refline(1,0)
+</pre><img vspace="5" hspace="5" src="HW6_4_GPR_02.png" alt=""> <h2 id="5">Calculate RMSEC using just selected variables</h2><pre class="codeinput">[idx,weights] = relieff(beer_spectra,extract_data,5);
+idx = idx(1:round(m/10));
+gprMdl = fitrgp(beer_spectra(:,idx),extract_data);
+y_pred = predict(gprMdl,beer_spectra(:,idx));
+RMSEC = sqrt(sumsqr(y_pred-extract_data)/numel(y_pred));
+y_pred = predict(gprMdl,beer_spectra_test(:,idx));
+RMSEP = sqrt(sumsqr(y_pred-extract_data_test)/numel(y_pred));
+
+disp(gprMdl.KernelInformation.KernelParameterNames(1) + <span class="string">": "</span> + gprMdl.KernelInformation.KernelParameters(1))
+disp(gprMdl.KernelInformation.KernelParameterNames(2) + <span class="string">": "</span> + gprMdl.KernelInformation.KernelParameters(2))
+disp(<span class="string">"Sigma: "</span> + gprMdl.Sigma)
+</pre><pre class="codeoutput">SigmaL: 1.7676
+SigmaF: 24.2883
+Sigma: 0.1041
+</pre><h2 id="6">4.3 Run GPR with all variables using 5-fold CV</h2><pre class="codeinput"><span class="comment">% opts = struct('UseParallel',true,'Kfold',5,'MaxObjectiveEvaluations',30,'Repartition',true,'Verbose',0);</span>
+k = 5;
+c = cvpartition(length(extract_data),<span class="string">'KFold'</span>,k);
+
+RMSECV = [];
+iter = 25;
+<span class="keyword">for</span> j = 1:iter
+    c = repartition(c);
+    <span class="keyword">for</span> i = 1:k
+        train_idx = training(c,i);
+        test_idx = ~train_idx;
+        X = beer_spectra(train_idx,:); y = extract_data(train_idx);
+        gprMdl = fitrgp(X,y);
+        y_pred = predict(gprMdl,beer_spectra(test_idx,:));
+        RMSECV(j,i) = sqrt(sumsqr(y_pred-extract_data(test_idx))/numel(y_pred));
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+RMSECV = mean(mean(RMSECV))
+</pre><pre class="codeoutput">
+RMSECV =
+
+    1.8442
+
+</pre><h2 id="7">4.4 Run GPR with selected variables using 5-fold CV</h2><pre class="codeinput"><span class="comment">% opts = struct('UseParallel',true,'Kfold',5,'MaxObjectiveEvaluations',30,'Repartition',true,'Verbose',0);</span>
+k = 5;
+c = cvpartition(height(beer_spectra),<span class="string">'KFold'</span>,k);
+
+RMSECV = [];
+iter = 25;
+<span class="keyword">for</span> j = 1:iter
+    c = repartition(c);
+    <span class="keyword">for</span> i = 1:k
+        train_idx = training(c,i);
+        test_idx = ~train_idx;
+        X = beer_spectra(train_idx,:); y = extract_data(train_idx);
+        [idx,weights] = relieff(X,y,5);
+        idx = idx(1:round(m/10));
+        gprMdl = fitrgp(X(:,idx),y);
+        y_pred = predict(gprMdl,beer_spectra(test_idx,idx));
+        RMSECV(j,i) = sqrt(sumsqr(y_pred-extract_data(test_idx))/numel(y_pred));
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+RMSECV = mean(mean(RMSECV));
+</pre><h2 id="8">Run GPR on data using built-in 10-fold CV</h2><pre class="codeinput">X = beer_spectra(:,idx);
+tic
+cvgprMdl = fitrgp(X,y,<span class="string">'KernelFunction'</span>,<span class="string">'squaredexponential'</span>,<span class="string">'CrossVal'</span>,<span class="string">'on'</span>);
+kfoldLoss(cvgprMdl)
+y_cv_pred = kfoldPredict(cvgprMdl);
+figure
+scatter(y,y_cv_pred)
+
+toc
+</pre><pre class="codeoutput error">Error using classreg.learning.FullClassificationRegressionModel.prepareDataCR (line 234)
+X and Y do not have the same number of observations.
+
+Error in classreg.learning.regr.FullRegressionModel.prepareData (line 388)
+                classreg.learning.FullClassificationRegressionModel.prepareDataCR(...
+
+Error in RegressionGP.prepareData (line 585)
+            [X,Y,W,dataSummary,responseTransform] = classreg.learning.regr.FullRegressionModel.prepareData(X,Y,varargin{:});
+
+Error in classreg.learning.FitTemplate/fit (line 246)
+                    this.PrepareData(X,Y,this.BaseFitObjectArgs{:});
+
+Error in RegressionGP.fit (line 309)
+            this = fit(temp,X,Y);
+
+Error in fitrgp (line 475)
+    obj = RegressionGP.fit(X,Y,RemainingArgs{:});
+
+Error in HW6_4_GPR (line 117)
+cvgprMdl = fitrgp(X,y,'KernelFunction','squaredexponential','CrossVal','on');
+</pre><h2 id="9">sumsqr() function</h2><pre class="codeinput"><span class="keyword">function</span> sqr = sumsqr(x)
+    sqr = x'*x;
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% HW6_4: GPR of beer extract data
+
+tic
+close all
+clear
+load beer_HW6
+cv = cvpartition(height(beer_spectra),'Holdout',0.25);
+beer_spectra_test = beer_spectra(cv.test,:);
+extract_data_test = extract_data(cv.test);
+beer_spectra = beer_spectra(cv.training,:);
+extract_data = extract_data(cv.training);
+[n,m] = size(beer_spectra);
+
+%% 4.1 Run GPR on all variables with default hyperparameters
+X = beer_spectra; y = extract_data;
+c = cvpartition(length(y),'Holdout',0.25);
+train_idx = training(c);
+test_idx = ~train_idx;
+gprMdl = fitrgp(X(train_idx,:),y(train_idx));
+y_pred = predict(gprMdl,X);
+
+figure
+scatter(y(train_idx),y_pred(train_idx))
+hold on
+scatter(y(test_idx),y_pred(test_idx),'or')
+refline(1,0)
+
+%% Calculate RMSEC using all variables
+gprMdl = fitrgp(X,y);
+y_pred = predict(gprMdl,X);
+RMSEC = sqrt(sumsqr(y_pred-extract_data)/numel(y_pred));
+
+%% 4.2 Run GPR on best 10% of variables from ReliefF with default hyperparameters
+% set up holdout partitioning
+c = cvpartition(length(extract_data),'Holdout',0.25);
+train_idx = training(c);
+test_idx = ~train_idx;
+
+% select training data and variables using ReliefF
+X = beer_spectra(train_idx,:); y = extract_data(train_idx);
+[idx,weights] = relieff(X,y,5);
+idx = idx(1:round(m/10));
+X = X(:,idx);
+
+% fit GPR model and predict extract values
+gprMdl = fitrgp(X,y);
+y_pred = predict(gprMdl,beer_spectra(:,idx));
+
+% plot training and test data
+figure
+scatter(extract_data(train_idx),y_pred(train_idx))
+hold on
+scatter(extract_data(test_idx),y_pred(test_idx),'or')
+refline(1,0)
+
+%% Calculate RMSEC using just selected variables
+[idx,weights] = relieff(beer_spectra,extract_data,5);
+idx = idx(1:round(m/10));
+gprMdl = fitrgp(beer_spectra(:,idx),extract_data);
+y_pred = predict(gprMdl,beer_spectra(:,idx));
+RMSEC = sqrt(sumsqr(y_pred-extract_data)/numel(y_pred));
+y_pred = predict(gprMdl,beer_spectra_test(:,idx));
+RMSEP = sqrt(sumsqr(y_pred-extract_data_test)/numel(y_pred));
+
+disp(gprMdl.KernelInformation.KernelParameterNames(1) + ": " + gprMdl.KernelInformation.KernelParameters(1))
+disp(gprMdl.KernelInformation.KernelParameterNames(2) + ": " + gprMdl.KernelInformation.KernelParameters(2))
+disp("Sigma: " + gprMdl.Sigma)
+
+%% 4.3 Run GPR with all variables using 5-fold CV
+
+% opts = struct('UseParallel',true,'Kfold',5,'MaxObjectiveEvaluations',30,'Repartition',true,'Verbose',0);
+k = 5;
+c = cvpartition(length(extract_data),'KFold',k);
+
+RMSECV = [];
+iter = 25;
+for j = 1:iter
+    c = repartition(c);
+    for i = 1:k
+        train_idx = training(c,i);
+        test_idx = ~train_idx;
+        X = beer_spectra(train_idx,:); y = extract_data(train_idx);
+        gprMdl = fitrgp(X,y);
+        y_pred = predict(gprMdl,beer_spectra(test_idx,:));
+        RMSECV(j,i) = sqrt(sumsqr(y_pred-extract_data(test_idx))/numel(y_pred));
+    end
+end
+RMSECV = mean(mean(RMSECV))
+
+%% 4.4 Run GPR with selected variables using 5-fold CV
+
+% opts = struct('UseParallel',true,'Kfold',5,'MaxObjectiveEvaluations',30,'Repartition',true,'Verbose',0);
+k = 5;
+c = cvpartition(height(beer_spectra),'KFold',k);
+
+RMSECV = [];
+iter = 25;
+for j = 1:iter
+    c = repartition(c);
+    for i = 1:k
+        train_idx = training(c,i);
+        test_idx = ~train_idx;
+        X = beer_spectra(train_idx,:); y = extract_data(train_idx);
+        [idx,weights] = relieff(X,y,5);
+        idx = idx(1:round(m/10));
+        gprMdl = fitrgp(X(:,idx),y);
+        y_pred = predict(gprMdl,beer_spectra(test_idx,idx));
+        RMSECV(j,i) = sqrt(sumsqr(y_pred-extract_data(test_idx))/numel(y_pred));
+    end
+end
+RMSECV = mean(mean(RMSECV));
+
+%% Run GPR on data using built-in 10-fold CV
+
+X = beer_spectra(:,idx);
+tic
+cvgprMdl = fitrgp(X,y,'KernelFunction','squaredexponential','CrossVal','on');
+kfoldLoss(cvgprMdl)
+y_cv_pred = kfoldPredict(cvgprMdl);
+figure
+scatter(y,y_cv_pred)
+
+toc
+
+%% sumsqr() function
+function sqr = sumsqr(x)
+    sqr = x'*x;
+end
+
+##### SOURCE END #####
+--></body></html>
