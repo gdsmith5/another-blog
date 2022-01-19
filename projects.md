@@ -4,7 +4,7 @@ title: Projects
 subtitle: A selection of data science and machine learning projects I've completed for my research lab and my course
 permalink: /projects/
 ---
-![map](\assets\img\PA_SE_surface_map.png#itsy){: style="float: right"}
+![map]({{ site.baseurl }}\assets\img\PA_SE_surface_map.png#itsy){: style="float: right"}
 ## [Interpolating low-cost sensor data]({{ site.baseurl }}/projects/PA_interpolation_report)
 
 {: .blog-tags}
