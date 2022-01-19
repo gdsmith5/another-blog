@@ -5,7 +5,7 @@ subtitle: A selection of data science and machine learning projects I've complet
 permalink: /projects/
 ---
 ![map](\assets\img\PA_SE_surface_map.png#itsy){: style="float: right"}
-## [Interpolating low-cost sensor data]({{ site.baseurl }}\PA_interpolation_report)
+## [Interpolating low-cost sensor data]({{ site.baseurl }}/projects/PA_interpolation_report)
 
 {: .blog-tags}
 <a> interpolation </a> <a> aerosol </a> <a> GPR </a> <a> MATLAB </a>
