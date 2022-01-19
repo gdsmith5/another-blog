@@ -6,7 +6,7 @@ cover-img: "/assets/img/ML_dark.jpeg"
 thumbnail-img: "/assets/img/lasso.jpeg"
 thumbnail-img-source: "wallpaperflare.com"
 thumbnail-img-link: "https://c4.wallpaperflare.com/wallpaper/591/746/388/cowboy-lasso-roping-wallpaper-preview.jpg"
-date:   2021-11-15 13:37:06 -0500
+date:   2021-10-14 13:37:06 -0500
 tags: [Machine Learning, meet the model, supervised, regression]
 comments: false
 readtime: true
