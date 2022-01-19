@@ -14,8 +14,8 @@ In this project I used GPR (Gaussian process regression) to interpolate low-cost
 
 
 
-![map](\assets\img\PA_map.png#itsy){: style="float: right"}
-## [Athens PurpleAir calibration]({{ site.baseurl }}Athens_PA_cal_report)
+![map]({{ site.baseurl }}\assets\img\PA_map.png#itsy){: style="float: right"}
+## [Athens PurpleAir calibration]({{ site.baseurl }}/projects/Athens_PA_cal_report)
 
 {: .blog-tags}
 <a> regression </a> <a> aerosol </a> <a> data cleaning </a> <a> cross validation </a> <a> MATLAB </a>
@@ -24,8 +24,8 @@ In this project I gathered data from 13 low-cost PurpleAir aerosol sensors as we
 
 
 
-![map](\assets\img\beer_PLS_variables.png#itsy){: style="float: right"}
-## [Regression of NIR beer spectra]({{ site.baseurl }}Beer_regression_report)
+![map]({{ site.baseurl }}\assets\img\beer_PLS_variables.png#itsy){: style="float: right"}
+## [Regression of NIR beer spectra]({{ site.baseurl }}/projects/Beer_regression_report)
 
 {: .blog-tags}
 <a> regression </a> <a> LASSO </a> <a> PLS </a> <a> GPR </a> <a> MATLAB </a>
