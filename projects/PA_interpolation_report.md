@@ -106,7 +106,7 @@ The same surface can be viewed in a slightly more informative way with the conto
 
 - GPR provides a powerful way to interpolate aerosol concentration values across a grid of points.
 
-- The extensive spatial coverage of the low-cost PurpleAir sensors can be leveraged to provide a level of geographic detail that is difficult to obtain using a much smaller number of expensive regulator monitors.
+- The extensive spatial coverage of the low-cost PurpleAir sensors can be leveraged to provide a level of geographic detail that is difficult to obtain using a much smaller number of expensive regulatory monitors.
 
 - The high time resolution (2 minutes) of the low-cost sensors makes it possible to obtain a picture of how aerosol concentration fields evovle with time, which is not possible with the regulatory monitors.
 

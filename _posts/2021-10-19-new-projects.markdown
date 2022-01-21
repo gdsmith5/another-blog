@@ -14,7 +14,7 @@ readtime: true
 ![waitbar]({{ site.baseurl }}/assets/img/PA_SE_surface_map.png#tiny)
 
 {:.caption}
-Interpolation of the low-cost aerosol sensor data across the Southeast U.S. Read more in the **Project**: [Interpolating low-cost sensor data]({{ site.baseurl }}/projects/PA_interpolation_report).
+Aerosol mass concentration across the Southeast U.S. Read more in the **Project**: [Interpolating low-cost sensor data]({{ site.baseurl }}/projects/PA_interpolation_report).
 
 #### In this post I'd like to introduce a new feature for the blog ... [Projects]({{ site.baseurl }}/projects).
 
