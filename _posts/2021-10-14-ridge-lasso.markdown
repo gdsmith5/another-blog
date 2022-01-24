@@ -16,6 +16,9 @@ A common issue when trying to fit a model to data is that of _overfitting_ - hav
 
 One way to address this problem is _feature selection_. With feature selection, only a subset of variables (features) is used. Another approach is to employ regularization, which uses additional constraints on the optimization. In this post, we are going to look at two particular types of regularization called `Ridge` and `LASSO` (Least Absolute Shrinkage Selection Operator) regression.
 
+{:.box-note}
+You can try out using LASSO regression to predict octane values from NIR spectra of gasoline samples using the Live Script I wrote, which you can find in the GitHub repository for my class [here](https://github.com/gdsmith5/mmm/blob/gh-pages/_scripts/lasso_octane.mlx){:target="_blank"}).
+
 ### Regularization
 
 The goal with simple linear regression is to minimize the _objective function_, which is the difference between the model-predicted values ($ \bf{x_i} \cdot \bf{b} $) and the actual values ($ y_i $) (actually, the sum of the squares of these differences):
