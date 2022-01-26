@@ -11,7 +11,7 @@ comments: false
 readtime: true
 ---
 {: .box-note}
-NOTE: This is the eight in my series of ["10 things I wish I had known when I started using MATLAB"]({{ site.baseurl }}{% post_url 2021-08-15-10-things-I-wish-I-had-known %}).
+NOTE: This is the eighth in my series of ["10 things I wish I had known when I started using MATLAB"]({{ site.baseurl }}{% post_url 2021-08-15-10-things-I-wish-I-had-known %}).
 
 MATLAB has a wide variety of variable types available, but one that took me an _embarassingly_ long time to learn about and appreciate is the `cell array`.
 

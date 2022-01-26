@@ -10,7 +10,7 @@ permalink: /projects/
 {: .blog-tags}
 <a> interpolation </a> <a> aerosol </a> <a> GPR </a> <a> MATLAB </a>
 
-In this project I used GPR (Gaussian process regression) to interpolate low-cost PurpleAir aerosol sensor data around Athens, GA and to visualize it on a map of the area.
+In this project I used GPR (Gaussian process regression) to interpolate low-cost PurpleAir aerosol sensor data around the Southeast U.S. and to visualize it on a map of the area.
 
 
 
