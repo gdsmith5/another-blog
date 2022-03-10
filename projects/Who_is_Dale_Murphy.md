@@ -51,16 +51,68 @@ The overall approach I took consisted of the following steps:
 4. calculate distances between all 2021 MLB players and each Dale Murphy season
 5. find three closest 2021 MLB players for each season
 
-### Results
+### Statistics
+
+For this project, I chose to use a set of statistics that were adjusted for the ballparks and eras in which the players played. The game has changed a lot over the past 30+ years, and using these stats allowed me to compare "apples to apples" when comparing Murphy's stats from the 1980s to those of the 2021 players.
+
+The eight stats I used are:
+
+* `WAR`   Wins Above Replacement
+* `wRC+`  Weighted Runs Created, adjusted
+* `BsR`   Baserunning Runs
+* `Def`   Defensive Runs Saved
+* `BB%+`  Percent of PAs with BB, adjusted
+* `K%+`   Percent of PAs with K, adjusted
+* `OBP+`  On-base Percentage, adjusted
+* `SLG+`  Slugging Percentage, adjusted
+
+Only `Def` and `BsR` are not adjusted, but I thought it was important to include statistics that directly quantify the players' defensive and baseruning contributions.
+
+
+### Data Visualization
+
+First, I'm going to represent the 262 MLB 2021 players according to their stats on a single plot. Then, I'm going to overlay Dale Murphy's individual season stats to visualize where they land relative to the 2021 players.
+
+#### 2021 MLB Players
+
+{:.center}
+![waitbar]({{ site.baseurl }}/assets/img/PCA_scores_2021.png)
+
+{:.center}
+Representation of 2021 MLB players by statistics with size of dot proportional to wRC+ and colored by Defensive Runs Saved.
+
+In this representation, each dot represents an individual player from 2021 using something called _PCA_ (Principal Components Analysis). The x-axis ("PC 1") and y-axis ("PC 2") represent new coordinates that are better at separating the players than the original stats. In fact, these new coordinates are _linear combinations_ of those stats.
+
+We notice a few things looking at this plot:
+
+* wRC+, a measure of offensive performance, (represented by size of dot) tends to increase going from left to right (increasing PC 1)
+* Defensive Runs Saved (represented by color of dot) tends to increase in going from bottom to top (increasing PC 2)
+
+This tells us that PC 1 mostly represents offensive production and PC 2 represents defensive production. Of course, it's a little more nuanced than that, but this gives us a way to think about what the plot is showing us.
+
+{:.box-note}
+I used PCA (principal components analysis) to reduce the dimensionality from eight (statistics) to four. This works particularly well for a dataset like this one in which a lot of the variables co-vary; for example, WAR is made up of offensive, defensive and baserunning contributions, so of course it will co-vary with the individual statistics. You can read more about PCA in my post [here]({{ site.baseurl }}{% post_url 2021-09-17-PCA-in-a-nutshell %}).
+
+#### Dale Murphy's Seasons
 
 {:.center}
 ![waitbar]({{ site.baseurl }}/assets/img/DM_PCA_scores.png)
 
 {:.center}
-Representation of 2021 MLB players (colored) and Dale Murphy's full seasons (1978-1991) (black).
+Same as above but with Dale Murphy's statistics from individual seasons overlayed.
 
-#### Data
+What we notice from this plot is that:
 
+* **Murphy's defense wasn't stellar** (PC 2 values below 0)
+* **He had some really good offensive seasons, 1982-1987** (PC 1 values > 3).
+
+### Dale Murphy Similarity Scores
+
+{:.center}
+![waitbar]({{ site.baseurl }}/assets/img/PCA_DM_zoom.png)
+
+{:.center}
+Same as above but zoomed in on Dale Murphy's best seasons (1982 - 1987).
 
 
 ### Conclusion
